@@ -1,4 +1,5 @@
-FROM maven:3.4.11-eclipse-temurin-21 AS BUILDER
+# Stage 1: Build
+FROM maven:3.9.9-eclipse-temurin-17 AS builder
 
 WORKDIR /app
 
@@ -8,11 +9,12 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-FROM openjdk:21-jdk as runner
+# Stage 2: Run
+FROM eclipse-temurin:17-jdk-jammy
 
 WORKDIR /app
 
-COPY --from=builder ./app/target/appname.0.0.1-SNAPSHOT.jar ./app.jar
+COPY --from=builder /app/target/Gibliart-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
