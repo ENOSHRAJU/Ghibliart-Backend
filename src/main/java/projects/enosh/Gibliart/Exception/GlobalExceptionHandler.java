@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
                 .message("External api error: "+ e.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
-        LOGGER.warn(errorResponse.getMessage().);
+        LOGGER.warn(errorResponse.getMessage());
         return new ResponseEntity<>(errorResponse, status);
     }
 }
