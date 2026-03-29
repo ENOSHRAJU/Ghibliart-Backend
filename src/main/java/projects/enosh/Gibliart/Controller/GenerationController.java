@@ -9,7 +9,7 @@ import projects.enosh.Gibliart.dto.TextGenerationRequestDTO;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"https://ghibliart-frontned-1.onrender.com"})
 public class GenerationController {
 
     private final GhibliArtService service;
