@@ -22,23 +22,29 @@ public class GenerationController {
     public ResponseEntity<byte[]> generateImageFromImage(@RequestParam("image") MultipartFile image,
                                                          @RequestParam("style") String style,
                                                          @RequestParam("prompt") String prompt) {
-        try {
-            byte[] imageBytes = service.createGhibliArtFromImage(image, style, prompt);
-            return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
-        } catch(Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+//        try {
+//            byte[] imageBytes = service.createGhibliArtFromImage(image, style, prompt);
+//            return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.internalServerError().build();
+//        }
+
+        byte[] imageBytes = service.createGhibliArtFromImage(image, style, prompt);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
     }
 
     @PostMapping(value = "/generate-from-text", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<byte[]> generateImageFromText(@RequestBody TextGenerationRequestDTO requestDTO) {
-        try {
-            byte[] imageBytes = service.createGhibliArtFromText(requestDTO.getPrompt(), requestDTO.getStyle(), requestDTO.getSize());
-            return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
-        } catch(Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+//        try {
+//            byte[] imageBytes = service.createGhibliArtFromText(requestDTO.getPrompt(), requestDTO.getStyle(), requestDTO.getSize());
+//            return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.internalServerError().build();
+//        }
+
+        byte[] imageBytes = service.createGhibliArtFromText(requestDTO.getPrompt(), requestDTO.getStyle(), requestDTO.getSize());
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
     }
 }
